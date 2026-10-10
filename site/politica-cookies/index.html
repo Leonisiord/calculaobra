@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política de cookies | CalculaObra</title>
+<meta name="description" content="Qué cookies usa CalculaObra, para qué sirven y cómo gestionarlas o retirar tu consentimiento.">
+<link rel="canonical" href="https://calculaobra-3hb.pages.dev/politica-cookies/">
+<meta name="theme-color" content="#c2410c">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/styles.css">
+<!-- ADSENSE: pega aquí el script de AdSense cuando te aprueben (ver DESPLIEGUE.md) -->
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="17" width="12" height="12" rx="1.5" fill="#c2410c"/><rect x="17" y="17" width="12" height="12" rx="1.5" fill="#9a3412"/><rect x="10" y="3" width="12" height="12" rx="1.5" fill="#ea580c"/></svg>CalculaObra</a>
+    <nav class="site-nav" aria-label="Principal">
+      <a href="/calculadora-concreto/">Concreto</a>
+      <a href="/calculadora-bloques/">Bloques</a>
+      <a href="/calculadora-pies-tablares/">Madera</a>
+      <a href="/sobre-nosotros/">Sobre nosotros</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<article>
+  <h1>Política de cookies</h1>
+  <p>Última actualización: 30 de septiembre de 2026.</p>
+
+  <h2>1. Qué son las cookies</h2>
+  <p>Las cookies son pequeños archivos que una web guarda en tu navegador para recordar información entre visitas o entre páginas.</p>
+
+  <h2>2. Cookies que usa este sitio</h2>
+  <p><strong>Cookies propias:</strong> ninguna. CalculaObra no instala cookies propias ni usa herramientas de analítica.</p>
+  <p><strong>Cookies de terceros (publicidad):</strong> Google AdSense puede instalar cookies para mostrar y medir anuncios. En el Espacio Económico Europeo, el Reino Unido y Suiza solo se instalan si das tu consentimiento en el aviso que aparece en tu primera visita.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Cookie</th><th>Titular</th><th>Finalidad</th><th>Duración</th></tr></thead>
+      <tbody>
+        <tr><td>__gads, __gpi</td><td>Google</td><td>Mostrar anuncios y limitar su repetición</td><td>Hasta 13 meses</td></tr>
+        <tr><td>IDE, DSID</td><td>Google (doubleclick.net)</td><td>Publicidad personalizada y medición</td><td>Hasta 13 meses</td></tr>
+        <tr><td>FCCDCF, FCNEC</td><td>Google (gestión del consentimiento)</td><td>Guardar tus preferencias de consentimiento</td><td>Hasta 13 meses</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Google puede cambiar los nombres de estas cookies. Tienes la información actualizada en <a href="https://policies.google.com/technologies/cookies?hl=es" rel="noopener">policies.google.com/technologies/cookies</a>.</p>
+
+  <h2>3. Cómo gestionar o retirar tu consentimiento</h2>
+  <p>Puedes cambiar tu elección en cualquier momento:</p>
+  <p><button type="button" id="btn-consentimiento">Cambiar preferencias de cookies</button></p>
+  <p id="consent-msg" class="hint"></p>
+  <p>También puedes bloquear o borrar las cookies desde tu navegador: <a href="https://support.google.com/chrome/answer/95647?hl=es" rel="noopener">Chrome</a>, <a href="https://support.mozilla.org/es/kb/Borrar%20cookies" rel="noopener">Firefox</a>, <a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" rel="noopener">Safari</a>, <a href="https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" rel="noopener">Edge</a>.</p>
+</article>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Legal">
+      <a href="/sobre-nosotros/">Sobre nosotros</a>
+      <a href="/contacto/">Contacto</a>
+      <a href="/aviso-legal/">Aviso legal</a>
+      <a href="/politica-privacidad/">Privacidad</a>
+      <a href="/politica-cookies/">Cookies</a>
+    </nav>
+    <p>Los resultados son orientativos para presupuestar. En elementos estructurales sigue siempre el proyecto y el criterio de un profesional.</p>
+  </div>
+</footer>
+<script>
+document.getElementById("btn-consentimiento").addEventListener("click", function () {
+  // Abre el mensaje de revocación de la herramienta de consentimiento de Google (si está activa).
+  window.googlefc = window.googlefc || {};
+  window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+  if (typeof window.googlefc.showRevocationMessage === "function") {
+    window.googlefc.callbackQueue.push(window.googlefc.showRevocationMessage);
+  } else {
+    document.getElementById("consent-msg").textContent =
+      "Ahora mismo no hay cookies publicitarias activas en tu navegador, así que no hay nada que cambiar.";
+  }
+});
+</script>
+</body>
+</html>
