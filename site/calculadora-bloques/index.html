@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora de bloques por m² y mortero para muros</title>
+<meta name="description" content="Calcula cuántos bloques, ladrillos o tabiques lleva tu muro y cuánto cemento y arena necesitas para el mortero. Con medidas de México, Perú, Chile y España.">
+<link rel="canonical" href="https://calculaobra-3hb.pages.dev/calculadora-bloques/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculadora de bloques por m² y mortero">
+<meta property="og:description" content="Piezas, cemento y arena para tu muro de block, tabique o ladrillo. Descuenta puertas y ventanas.">
+<meta property="og:url" content="https://calculaobra-3hb.pages.dev/calculadora-bloques/">
+<meta property="og:locale" content="es_ES">
+<meta name="theme-color" content="#c2410c">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/styles.css">
+<!-- ADSENSE: pega aquí el script de AdSense cuando te aprueben (ver DESPLIEGUE.md) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Calculadora de bloques y mortero",
+      "url": "https://calculaobra-3hb.pages.dev/calculadora-bloques/",
+      "description": "Calcula el número de bloques, ladrillos o tabiques de un muro y el cemento y la arena del mortero.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Cualquiera",
+      "browserRequirements": "Requiere JavaScript",
+      "inLanguage": "es",
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://calculaobra-3hb.pages.dev/" },
+        { "@type": "ListItem", "position": 2, "name": "Calculadora de bloques", "item": "https://calculaobra-3hb.pages.dev/calculadora-bloques/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuántos blocks lleva un metro cuadrado?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Con block de 20 × 40 cm y junta de 1 cm salen 11,6 piezas por m². Si el block es modular (39 × 19 cm, pensado para que con la junta ocupe 40 × 20), salen 12,5 por m². Añade un 5 % por roturas y cortes." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuántos tabiques rojos lleva un metro cuadrado?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Un tabique rojo recocido de 7 × 14 × 28 cm con junta de 1,5 cm da unas 40 piezas por m² en muro de 14 cm." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué proporción de mortero uso para pegar bloques?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Para muros de carga lo habitual es 1:4 (una parte de cemento por cuatro de arena). Para muros divisorios sin carga basta 1:5. El 1:3 se reserva para aplanados impermeables o elementos muy expuestos." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="17" width="12" height="12" rx="1.5" fill="#c2410c"/><rect x="17" y="17" width="12" height="12" rx="1.5" fill="#9a3412"/><rect x="10" y="3" width="12" height="12" rx="1.5" fill="#ea580c"/></svg>CalculaObra</a>
+    <nav class="site-nav" aria-label="Principal">
+      <a href="/calculadora-concreto/">Concreto</a>
+      <a href="/calculadora-bloques/" aria-current="page">Bloques</a>
+      <a href="/calculadora-pies-tablares/">Madera</a>
+      <a href="/sobre-nosotros/">Sobre nosotros</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<article>
+  <nav class="breadcrumb" aria-label="Migas de pan"><ol><li><a href="/">Inicio</a></li><li>Calculadora de bloques</li></ol></nav>
+  <h1>Calculadora de bloques por m² y mortero</h1>
+  <p class="lead">Calcula cuántos bloques, tabiques o ladrillos necesitas para tu muro, descontando puertas y ventanas. Te dice también cuánto cemento y arena comprar para pegarlos.</p>
+
+  <section class="calc" aria-label="Calculadora">
+    <form id="calc-bloques" class="card" novalidate>
+      <fieldset>
+        <legend>1. Muro</legend>
+        <div class="row">
+          <div class="field"><label for="m_largo">Largo <span class="hint">metros</span></label><input id="m_largo" name="m_largo" type="number" inputmode="decimal" min="0" step="any" value="5"></div>
+          <div class="field"><label for="m_alto">Alto <span class="hint">metros</span></label><input id="m_alto" name="m_alto" type="number" inputmode="decimal" min="0" step="any" value="2.5"></div>
+          <div class="field"><label for="m_huecos">Huecos <span class="hint">m² de puertas y ventanas</span></label><input id="m_huecos" name="m_huecos" type="number" inputmode="decimal" min="0" step="any" value="0"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. Pieza</legend>
+        <div class="field">
+          <label for="pieza">Tipo de pieza</label>
+          <select id="pieza" name="pieza">
+            <option value="block15" selected>Block 15 × 20 × 40 cm (México, Centroamérica)</option>
+            <option value="block12">Block 12 × 20 × 40 cm</option>
+            <option value="modular20">Bloque de hormigón modular 40 × 20 × 20 (pieza real 39 × 19)</option>
+            <option value="tabique">Tabique rojo recocido 7 × 14 × 28 cm (México)</option>
+            <option value="kingkong">Ladrillo King Kong 9 × 13 × 24 cm, muro de soga (Perú)</option>
+            <option value="hueco">Ladrillo hueco doble 24 × 11,5 × 7 cm (España)</option>
+            <option value="custom">Otra medida (escríbela)</option>
+          </select>
+        </div>
+        <div class="row">
+          <div class="field"><label for="p_largo">Largo pieza <span class="hint">cm</span></label><input id="p_largo" name="p_largo" type="number" inputmode="decimal" min="0" step="any"></div>
+          <div class="field"><label for="p_alto">Alto pieza <span class="hint">cm</span></label><input id="p_alto" name="p_alto" type="number" inputmode="decimal" min="0" step="any"></div>
+          <div class="field"><label for="p_espesor">Grosor muro <span class="hint">cm</span></label><input id="p_espesor" name="p_espesor" type="number" inputmode="decimal" min="0" step="any"></div>
+          <div class="field"><label for="p_junta">Junta <span class="hint">cm</span></label><input id="p_junta" name="p_junta" type="number" inputmode="decimal" min="0" step="any"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>3. Mortero y desperdicio</legend>
+        <div class="row">
+          <div class="field">
+            <label for="proporcion">Proporción <span class="hint">cemento : arena</span></label>
+            <select id="proporcion" name="proporcion">
+              <option value="1:3">1:3 (muy resistente)</option>
+              <option value="1:4" selected>1:4 (muros de carga)</option>
+              <option value="1:5">1:5 (muros divisorios)</option>
+              <option value="1:6">1:6 (bardas sin carga)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="bolsa">Bulto de cemento</label>
+            <select id="bolsa" name="bolsa">
+              <option value="50" selected>50 kg</option>
+              <option value="42.5">42,5 kg (Perú)</option>
+              <option value="25">25 kg (Chile, España)</option>
+            </select>
+          </div>
+          <div class="field"><label for="desp_piezas">Extra piezas <span class="hint">% roturas</span></label><input id="desp_piezas" name="desp_piezas" type="number" inputmode="decimal" min="0" max="50" step="1" value="5"></div>
+          <div class="field"><label for="desp_mortero">Extra mortero <span class="hint">%</span></label><input id="desp_mortero" name="desp_mortero" type="number" inputmode="decimal" min="0" max="100" step="1" value="15"></div>
+        </div>
+      </fieldset>
+      <p id="r-error" class="error" role="alert"></p>
+    </form>
+
+    <div class="card results" aria-live="polite">
+      <h2>Necesitas</h2>
+      <div class="big" id="r-piezas">–</div>
+      <p id="r-area" style="margin:.3em 0 0">–</p>
+      <ul class="result-list" id="r-lista"></ul>
+      <div class="actions">
+        <button type="button" id="btn-copiar">Copiar lista</button>
+        <button type="button" id="btn-imprimir" class="secondary">Imprimir</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANUNCIO 1 (tras la calculadora): pega aquí un bloque de AdSense -->
+
+  <h2>Cómo se calcula</h2>
+  <ol>
+    <li><strong>Superficie neta.</strong> Largo × alto del muro, menos los huecos. Una puerta estándar son unos 1,9 m² (0,9 × 2,1 m) y una ventana de 1,2 × 1 m son 1,2 m².</li>
+    <li><strong>Piezas por m².</strong> Cada pieza ocupa su tamaño más la junta. Con un block de 40 × 20 cm y junta de 1 cm: 1 ÷ (0,41 × 0,21) = 11,6 piezas por m².</li>
+    <li><strong>Mortero.</strong> Es el volumen del muro que no ocupan las piezas: grosor × (1 − superficie de la pieza ÷ superficie con junta). Para ese block de 15 cm salen unos 10,6 litros de mortero por m².</li>
+    <li><strong>Cemento y arena.</strong> Cada m³ de mortero lleva una cantidad fija de cemento y arena según la proporción (tabla de abajo).</li>
+  </ol>
+  <p>Ejemplo con los valores por defecto: muro de 5 × 2,5 m = 12,5 m² de block de 15 cm, con 5 % de roturas. Salen 153 blocks. El mortero son 0,15 m³ con el 15 % extra; a 1:4 son 58 kg de cemento (2 bultos de 50 kg) y 0,15 m³ de arena (8 botes).</p>
+
+  <h2>Piezas por metro cuadrado según el tipo</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Pieza (medidas reales)</th><th>Junta</th><th>Piezas/m²</th><th>Mortero/m²</th></tr></thead>
+      <tbody>
+        <tr><td>Block 15 × 20 × 40 cm</td><td class="num">1 cm</td><td class="num">11,6</td><td class="num">10,6 L</td></tr>
+        <tr><td>Block 12 × 20 × 40 cm</td><td class="num">1 cm</td><td class="num">11,6</td><td class="num">8,5 L</td></tr>
+        <tr><td>Bloque modular 39 × 19, grosor 19 cm</td><td class="num">1 cm</td><td class="num">12,5</td><td class="num">14,0 L</td></tr>
+        <tr><td>Tabique rojo 7 × 14 × 28 cm</td><td class="num">1,5 cm</td><td class="num">39,9</td><td class="num">30,6 L</td></tr>
+        <tr><td>Ladrillo King Kong 9 × 13 × 24 cm (soga)</td><td class="num">1,5 cm</td><td class="num">37,3</td><td class="num">25,1 L</td></tr>
+        <tr><td>Ladrillo hueco doble 24 × 11,5 × 7 cm</td><td class="num">1 cm</td><td class="num">50,0</td><td class="num">18,4 L</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note"><strong>¿12,5 o 11,6 blocks por m²?</strong> Muchas tablas dicen 12,5, pero ese número solo vale si el block mide en realidad 39 × 19 cm (medida "modular", pensada para que con la junta ocupe 40 × 20). Si tu block mide 40 × 20 cm de verdad, salen 11,6. Mide una pieza antes de comprar.</p>
+
+  <h2>Materiales por m³ de mortero</h2>
+  <p>Valores de referencia de CAPECO para mortero de cemento y arena gruesa, pasados a kilos para usarlos con cualquier tamaño de bulto.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Proporción</th><th>Cemento</th><th>Bultos 50 kg</th><th>Arena</th><th>Uso habitual</th></tr></thead>
+      <tbody>
+        <tr><td>1:3</td><td class="num">446 kg</td><td class="num">8,9</td><td class="num">0,95 m³</td><td>Aplanados impermeables, zonas muy expuestas</td></tr>
+        <tr><td>1:4</td><td class="num">378 kg</td><td class="num">7,6</td><td class="num">1,00 m³</td><td>Muros de carga</td></tr>
+        <tr><td>1:5</td><td class="num">319 kg</td><td class="num">6,4</td><td class="num">1,05 m³</td><td>Muros divisorios</td></tr>
+        <tr><td>1:6</td><td class="num">268 kg</td><td class="num">5,4</td><td class="num">1,07 m³</td><td>Bardas y muros sin carga</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>La arena supera 1 m³ en algunas proporciones porque al mezclarse con el cemento y el agua reduce su volumen: los granos finos de cemento rellenan los huecos entre los de arena.</p>
+
+  <!-- ANUNCIO 2 (mitad del texto): pega aquí un bloque de AdSense -->
+
+  <h2>Consejos prácticos</h2>
+  <ul>
+    <li><strong>Moja las piezas de barro</strong> (tabique, ladrillo) antes de asentarlas. Si están secas, absorben el agua del mortero y la pega queda débil. Los blocks de concreto, al revés: colócalos secos.</li>
+    <li><strong>Mantén la junta constante</strong> con un hilo o reventón en cada hilada. Juntas más gruesas de lo previsto disparan el consumo de mortero.</li>
+    <li><strong>Prepara solo el mortero que uses en 1,5-2 horas.</strong> Pasado ese tiempo empieza a fraguar y no se debe volver a amasar con agua.</li>
+    <li><strong>En muros de carga</strong> los castillos y dalas llevan concreto: calcúlalo con la <a href="/calculadora-concreto/">calculadora de concreto</a>.</li>
+  </ul>
+
+  <h2>Preguntas frecuentes</h2>
+  <details><summary>¿Cuántos blocks lleva un metro cuadrado?</summary><p>Con block de 20 × 40 cm y junta de 1 cm salen 11,6 piezas por m². Si el block es modular (39 × 19 cm, pensado para que con la junta ocupe 40 × 20), salen 12,5 por m². Añade un 5 % por roturas y cortes.</p></details>
+  <details><summary>¿Cuántos tabiques rojos lleva un metro cuadrado?</summary><p>Un tabique rojo recocido de 7 × 14 × 28 cm con junta de 1,5 cm da unas 40 piezas por m² en muro de 14 cm.</p></details>
+  <details><summary>¿Qué proporción de mortero uso para pegar bloques?</summary><p>Para muros de carga lo habitual es 1:4 (una parte de cemento por cuatro de arena). Para muros divisorios sin carga basta 1:5. El 1:3 se reserva para aplanados impermeables o elementos muy expuestos.</p></details>
+
+  <h2>Otras calculadoras de obra</h2>
+  <ul>
+    <li><a href="/calculadora-concreto/">Calculadora de concreto</a>: bultos de cemento, arena y grava para losas, zapatas, castillos y columnas.</li>
+    <li><a href="/calculadora-pies-tablares/">Calculadora de pies tablares</a>: volumen y coste de la madera para cimbras, techos y estructuras.</li>
+  </ul>
+</article>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Legal">
+      <a href="/sobre-nosotros/">Sobre nosotros</a>
+      <a href="/contacto/">Contacto</a>
+      <a href="/aviso-legal/">Aviso legal</a>
+      <a href="/politica-privacidad/">Privacidad</a>
+      <a href="/politica-cookies/">Cookies</a>
+    </nav>
+    <p>Los resultados son orientativos para presupuestar. En elementos estructurales sigue siempre el proyecto y el criterio de un profesional.</p>
+  </div>
+</footer>
+<script src="/js/bloques.js" defer></script>
+</body>
+</html>
