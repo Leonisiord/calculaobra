@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora de concreto: bultos de cemento, arena y grava por m³</title>
+<meta name="description" content="Calcula cuántos bultos de cemento, m³ de arena, grava y litros de agua necesitas para tu losa, zapata o columna según la resistencia f'c. Con receta por bulto.">
+<link rel="canonical" href="https://calculaobra-3hb.pages.dev/calculadora-concreto/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculadora de concreto: bultos de cemento, arena y grava">
+<meta property="og:description" content="Materiales exactos para tu losa, zapata o columna según f'c 140 a 280 kg/cm². Con receta por bulto en botes.">
+<meta property="og:url" content="https://calculaobra-3hb.pages.dev/calculadora-concreto/">
+<meta property="og:locale" content="es_ES">
+<meta name="theme-color" content="#c2410c">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/styles.css">
+<!-- ADSENSE: pega aquí el script de AdSense cuando te aprueben (ver DESPLIEGUE.md) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Calculadora de concreto",
+      "url": "https://calculaobra-3hb.pages.dev/calculadora-concreto/",
+      "description": "Calcula bultos de cemento, arena, grava y agua para concreto según volumen y resistencia f'c.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Cualquiera",
+      "browserRequirements": "Requiere JavaScript",
+      "inLanguage": "es",
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://calculaobra-3hb.pages.dev/" },
+        { "@type": "ListItem", "position": 2, "name": "Calculadora de concreto", "item": "https://calculaobra-3hb.pages.dev/calculadora-concreto/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuántos bultos de cemento lleva un metro cúbico de concreto?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Depende de la resistencia. Para f'c 210 kg/cm² se usan unos 413 kg de cemento por m³: 8,3 bultos de 50 kg o 9,7 bolsas de 42,5 kg. Para f'c 140 bastan unos 298 kg (6 bultos de 50 kg)." }
+        },
+        {
+          "@type": "Question",
+          "name": "Mi plano pide f'c 200 o 250, ¿qué fila uso?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Usa siempre la resistencia igual o inmediatamente superior de la tabla: para f'c 200 elige 210, y para f'c 250 elige 280. Así quedas del lado seguro." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué porcentaje de desperdicio debo sumar?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Entre un 5 % y un 10 %. Un 5 % es razonable si mezclas en revolvedora y la cimbra está bien hecha; sube al 10 % si mezclas a mano o el terreno es irregular." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánta agua lleva un bulto de cemento de 50 kg?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Con la dosificación de f'c 210, unos 22 litros por bulto de 50 kg (poco más de un bote de 19 L). Añadir más agua hace la mezcla más manejable pero reduce la resistencia final." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="17" width="12" height="12" rx="1.5" fill="#c2410c"/><rect x="17" y="17" width="12" height="12" rx="1.5" fill="#9a3412"/><rect x="10" y="3" width="12" height="12" rx="1.5" fill="#ea580c"/></svg>CalculaObra</a>
+    <nav class="site-nav" aria-label="Principal">
+      <a href="/calculadora-concreto/" aria-current="page">Concreto</a>
+      <a href="/calculadora-bloques/">Bloques</a>
+      <a href="/calculadora-pies-tablares/">Madera</a>
+      <a href="/sobre-nosotros/">Sobre nosotros</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<article>
+  <nav class="breadcrumb" aria-label="Migas de pan"><ol><li><a href="/">Inicio</a></li><li>Calculadora de concreto</li></ol></nav>
+  <h1>Calculadora de concreto: cemento, arena, grava y agua</h1>
+  <p class="lead">Escribe las medidas de tu losa, zapata o columna y elige la resistencia. Verás cuántos bultos de cemento comprar, cuánta arena y grava pedir y la receta por bulto para mezclar en obra.</p>
+
+  <section class="calc" aria-label="Calculadora">
+    <form id="calc-concreto" class="card" novalidate>
+      <fieldset>
+        <legend>1. ¿Qué vas a colar?</legend>
+        <div class="segmented">
+          <label><input type="radio" name="tipo" value="losa" checked><span>Losa o firme</span></label>
+          <label><input type="radio" name="tipo" value="prisma"><span>Zapata, trabe o columna</span></label>
+          <label><input type="radio" name="tipo" value="cilindro"><span>Columna redonda</span></label>
+          <label><input type="radio" name="tipo" value="volumen"><span>Ya sé los m³</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. Medidas</legend>
+        <div class="row" data-tipo="losa">
+          <div class="field"><label for="losa_largo">Largo <span class="hint">metros</span></label><input id="losa_largo" name="losa_largo" type="number" inputmode="decimal" min="0" step="any" value="5"></div>
+          <div class="field"><label for="losa_ancho">Ancho <span class="hint">metros</span></label><input id="losa_ancho" name="losa_ancho" type="number" inputmode="decimal" min="0" step="any" value="4"></div>
+          <div class="field"><label for="losa_espesor">Espesor <span class="hint">centímetros</span></label><input id="losa_espesor" name="losa_espesor" type="number" inputmode="decimal" min="0" step="any" value="10"></div>
+        </div>
+        <div class="row" data-tipo="prisma" hidden>
+          <div class="field"><label for="prisma_largo">Largo o altura <span class="hint">metros</span></label><input id="prisma_largo" name="prisma_largo" type="number" inputmode="decimal" min="0" step="any" value="2.5"></div>
+          <div class="field"><label for="prisma_ancho">Ancho <span class="hint">centímetros</span></label><input id="prisma_ancho" name="prisma_ancho" type="number" inputmode="decimal" min="0" step="any" value="15"></div>
+          <div class="field"><label for="prisma_alto">Fondo o peralte <span class="hint">centímetros</span></label><input id="prisma_alto" name="prisma_alto" type="number" inputmode="decimal" min="0" step="any" value="20"></div>
+          <div class="field"><label for="prisma_cant">Cantidad <span class="hint">piezas iguales</span></label><input id="prisma_cant" name="prisma_cant" type="number" inputmode="numeric" min="1" step="1" value="1"></div>
+        </div>
+        <div class="row" data-tipo="cilindro" hidden>
+          <div class="field"><label for="cil_diam">Diámetro <span class="hint">centímetros</span></label><input id="cil_diam" name="cil_diam" type="number" inputmode="decimal" min="0" step="any" value="30"></div>
+          <div class="field"><label for="cil_alto">Altura <span class="hint">metros</span></label><input id="cil_alto" name="cil_alto" type="number" inputmode="decimal" min="0" step="any" value="2.5"></div>
+          <div class="field"><label for="cil_cant">Cantidad <span class="hint">columnas</span></label><input id="cil_cant" name="cil_cant" type="number" inputmode="numeric" min="1" step="1" value="1"></div>
+        </div>
+        <div class="row" data-tipo="volumen" hidden>
+          <div class="field"><label for="vol_m3">Volumen <span class="hint">metros cúbicos (m³)</span></label><input id="vol_m3" name="vol_m3" type="number" inputmode="decimal" min="0" step="any" value="1"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>3. Mezcla</legend>
+        <div class="row">
+          <div class="field">
+            <label for="fc">Resistencia f'c <span class="hint">kg/cm²</span></label>
+            <select id="fc" name="fc">
+              <option value="140">140 – firmes, banquetas</option>
+              <option value="175">175 – pisos, dalas, castillos</option>
+              <option value="210" selected>210 – losas, zapatas, columnas</option>
+              <option value="245">245 – elementos muy cargados</option>
+              <option value="280">280 – según cálculo estructural</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="bolsa">Tamaño del bulto</label>
+            <select id="bolsa" name="bolsa">
+              <option value="50" selected>50 kg (México, Colombia, Centroamérica…)</option>
+              <option value="42.5">42,5 kg (Perú)</option>
+              <option value="25">25 kg (Chile, España…)</option>
+            </select>
+          </div>
+          <div class="field"><label for="desperdicio">Desperdicio <span class="hint">% extra</span></label><input id="desperdicio" name="desperdicio" type="number" inputmode="decimal" min="0" max="50" step="1" value="5"></div>
+        </div>
+      </fieldset>
+      <p id="r-error" class="error" role="alert"></p>
+    </form>
+
+    <div class="card results" aria-live="polite">
+      <h2>Necesitas</h2>
+      <div class="big" id="r-bolsas">–</div>
+      <p id="r-volumen" style="margin:.3em 0 0">–</p>
+      <ul class="result-list" id="r-lista"></ul>
+      <h3>Receta por bulto de cemento</h3>
+      <ul class="result-list" id="r-receta"></ul>
+      <div class="actions">
+        <button type="button" id="btn-copiar">Copiar lista</button>
+        <button type="button" id="btn-imprimir" class="secondary">Imprimir</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANUNCIO 1 (tras la calculadora): pega aquí un bloque de AdSense -->
+
+  <h2>Cómo se calcula</h2>
+  <p>El cálculo tiene tres pasos:</p>
+  <ol>
+    <li><strong>Volumen.</strong> Multiplica las tres medidas en metros. Una losa de 5 × 4 m y 10 cm de espesor son 5 × 4 × 0,10 = 2 m³. En una columna redonda el volumen es π × radio² × altura.</li>
+    <li><strong>Desperdicio.</strong> Suma entre un 5 % y un 10 %: siempre se pierde algo en la mezcla, en el transporte y por irregularidades de la cimbra o del terreno.</li>
+    <li><strong>Materiales.</strong> Multiplica el volumen total por la cantidad de cada material que lleva 1 m³ según la resistencia (tabla de abajo). Para pasar el cemento a bultos, divide los kilos entre el peso de tu bulto.</li>
+  </ol>
+  <p>Ejemplo: esa losa de 2 m³ con un 5 % de desperdicio son 2,1 m³. En f'c 210 lleva 2,1 × 413,5 = 868 kg de cemento (18 bultos de 50 kg), 1,09 m³ de arena, 1,11 m³ de grava y 391 litros de agua.</p>
+
+  <h2>Tabla de dosificación por metro cúbico</h2>
+  <p>Cantidades para 1 m³ de concreto hecho en obra con grava de 3/4" y arena gruesa. Son los valores de referencia de la Cámara Peruana de la Construcción (CAPECO), muy usados en toda Latinoamérica para presupuestar.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>f'c (kg/cm²)</th><th>Cemento</th><th>Bultos 50 kg</th><th>Bolsas 42,5 kg</th><th>Arena</th><th>Grava</th><th>Agua</th><th>Uso habitual</th></tr></thead>
+      <tbody>
+        <tr><td>140</td><td class="num">298 kg</td><td class="num">6,0</td><td class="num">7,0</td><td class="num">0,56 m³</td><td class="num">0,57 m³</td><td class="num">184 L</td><td>Firmes, banquetas, plantillas, pisos sin carga</td></tr>
+        <tr><td>175</td><td class="num">358 kg</td><td class="num">7,2</td><td class="num">8,4</td><td class="num">0,54 m³</td><td class="num">0,55 m³</td><td class="num">185 L</td><td>Pisos de cochera ligera, dalas y castillos</td></tr>
+        <tr><td>210</td><td class="num">414 kg</td><td class="num">8,3</td><td class="num">9,7</td><td class="num">0,52 m³</td><td class="num">0,53 m³</td><td class="num">186 L</td><td>Losas, trabes, columnas y zapatas de vivienda</td></tr>
+        <tr><td>245</td><td class="num">489 kg</td><td class="num">9,8</td><td class="num">11,5</td><td class="num">0,50 m³</td><td class="num">0,51 m³</td><td class="num">187 L</td><td>Elementos con más carga o luces grandes</td></tr>
+        <tr><td>280</td><td class="num">567 kg</td><td class="num">11,3</td><td class="num">13,3</td><td class="num">0,45 m³</td><td class="num">0,51 m³</td><td class="num">189 L</td><td>Cuando lo indique el cálculo estructural</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note"><strong>Si tu plano pide f'c 200 o 250</strong> (lo habitual en México), elige la fila igual o inmediatamente superior: 210 para f'c 200 y 280 para f'c 250. Nunca redondees hacia abajo.</p>
+
+  <h2>¿Qué resistencia necesito?</h2>
+  <p>La resistencia f'c es la presión que aguanta el concreto a los 28 días, en kilos por centímetro cuadrado. Como orientación para vivienda:</p>
+  <ul>
+    <li><strong>f'c 100-140:</strong> plantillas bajo zapatas, firmes de patio, banquetas y rellenos sin función estructural.</li>
+    <li><strong>f'c 150-175:</strong> pisos interiores, dalas y castillos de muros de carga en vivienda de un nivel.</li>
+    <li><strong>f'c 200-210:</strong> la resistencia estructural más habitual: losas, trabes, columnas y zapatas de casas de uno o dos niveles.</li>
+    <li><strong>f'c 250 o más:</strong> solo si lo indica el cálculo estructural (varios niveles, claros grandes, cargas pesadas).</li>
+  </ul>
+  <p>En elementos estructurales manda siempre lo que diga el plano o el ingeniero responsable. Esta calculadora sirve para presupuestar y comprar material, no sustituye un diseño de mezcla con pruebas de laboratorio.</p>
+
+  <h2>Consejos para que la mezcla salga bien</h2>
+  <ul>
+    <li><strong>Controla el agua.</strong> Es el error más común. Cada litro de más facilita el colado pero baja la resistencia. Si la arena está mojada, echa menos agua de la indicada.</li>
+    <li><strong>Mide con botes, no con palas.</strong> Una pala puede variar un 30 % según quién la cargue. Un bote de 19 litros siempre mide lo mismo.</li>
+    <li><strong>Vibra o varillea.</strong> Picar el concreto recién colado saca el aire atrapado y evita huecos (las "ratoneras").</li>
+    <li><strong>Cura durante 7 días.</strong> Mantén el concreto húmedo (regándolo o cubriéndolo con plástico). Así alcanza la resistencia calculada y no se agrieta.</li>
+    <li><strong>A partir de 5-6 m³</strong> suele salir a cuenta pedir concreto premezclado: pide cotización y compara con el coste de materiales y mano de obra.</li>
+  </ul>
+
+  <!-- ANUNCIO 2 (mitad del texto): pega aquí un bloque de AdSense -->
+
+  <h2>Preguntas frecuentes</h2>
+  <details><summary>¿Cuántos bultos de cemento lleva un metro cúbico de concreto?</summary><p>Depende de la resistencia. Para f'c 210 kg/cm² se usan unos 413 kg de cemento por m³: 8,3 bultos de 50 kg o 9,7 bolsas de 42,5 kg. Para f'c 140 bastan unos 298 kg (6 bultos de 50 kg).</p></details>
+  <details><summary>Mi plano pide f'c 200 o 250, ¿qué fila uso?</summary><p>Usa siempre la resistencia igual o inmediatamente superior de la tabla: para f'c 200 elige 210, y para f'c 250 elige 280. Así quedas del lado seguro.</p></details>
+  <details><summary>¿Qué porcentaje de desperdicio debo sumar?</summary><p>Entre un 5 % y un 10 %. Un 5 % es razonable si mezclas en revolvedora y la cimbra está bien hecha; sube al 10 % si mezclas a mano o el terreno es irregular.</p></details>
+  <details><summary>¿Cuánta agua lleva un bulto de cemento de 50 kg?</summary><p>Con la dosificación de f'c 210, unos 22 litros por bulto de 50 kg (poco más de un bote de 19 L). Añadir más agua hace la mezcla más manejable pero reduce la resistencia final.</p></details>
+
+  <h2>Otras calculadoras de obra</h2>
+  <ul>
+    <li><a href="/calculadora-bloques/">Calculadora de bloques y mortero por m²</a>: cuántos bloques, ladrillos o tabiques y cuánto cemento y arena necesitas para un muro.</li>
+    <li><a href="/calculadora-pies-tablares/">Calculadora de pies tablares</a>: cuánta madera (y a qué precio) necesitas para la cimbra.</li>
+  </ul>
+</article>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Legal">
+      <a href="/sobre-nosotros/">Sobre nosotros</a>
+      <a href="/contacto/">Contacto</a>
+      <a href="/aviso-legal/">Aviso legal</a>
+      <a href="/politica-privacidad/">Privacidad</a>
+      <a href="/politica-cookies/">Cookies</a>
+    </nav>
+    <p>Los resultados son orientativos para presupuestar. En elementos estructurales sigue siempre el proyecto y el criterio de un profesional.</p>
+  </div>
+</footer>
+<script src="/js/concreto.js" defer></script>
+</body>
+</html>
