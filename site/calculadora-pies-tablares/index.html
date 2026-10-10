@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora de pies tablares de madera (con precio y m³)</title>
+<meta name="description" content="Calcula los pies tablares de tu madera: suma varias piezas, en pulgadas o centímetros y pies o metros. Te da el coste total y la equivalencia en m³.">
+<link rel="canonical" href="https://calculaobra-3hb.pages.dev/calculadora-pies-tablares/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculadora de pies tablares de madera">
+<meta property="og:description" content="Suma los pies tablares de todas tus piezas y calcula el coste. Con tabla de medidas comerciales.">
+<meta property="og:url" content="https://calculaobra-3hb.pages.dev/calculadora-pies-tablares/">
+<meta property="og:locale" content="es_ES">
+<meta name="theme-color" content="#c2410c">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/styles.css">
+<!-- ADSENSE: pega aquí el script de AdSense cuando te aprueben (ver DESPLIEGUE.md) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Calculadora de pies tablares",
+      "url": "https://calculaobra-3hb.pages.dev/calculadora-pies-tablares/",
+      "description": "Calcula los pies tablares de una o varias piezas de madera, su volumen en m³ y su coste.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Cualquiera",
+      "browserRequirements": "Requiere JavaScript",
+      "inLanguage": "es",
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://calculaobra-3hb.pages.dev/" },
+        { "@type": "ListItem", "position": 2, "name": "Calculadora de pies tablares", "item": "https://calculaobra-3hb.pages.dev/calculadora-pies-tablares/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cómo se calculan los pies tablares?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Multiplica el grueso en pulgadas por el ancho en pulgadas y por el largo en pies, y divide entre 12. Un barrote de 2\" × 4\" × 8 pies tiene 2 × 4 × 8 ÷ 12 = 5,33 pies tablares." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuántos pies tablares tiene un metro cúbico?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Un metro cúbico tiene 423,78 pies tablares. Al revés, un pie tablar equivale a 0,00236 m³ (2,36 litros de madera)." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuántos pies tablares tiene una tabla de 1 × 12 × 8 1/4?",
+          "acceptedAnswer": { "@type": "Answer", "text": "1 × 12 × 8,25 ÷ 12 = 8,25 pies tablares." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Se usan las medidas nominales o las reales?",
+          "acceptedAnswer": { "@type": "Answer", "text": "En la venta se usan las nominales. Un barrote de 2\" × 4\" se cobra como 2 × 4 aunque, ya cepillado, mida algo menos. Usa las medidas con las que el aserradero o la maderería anuncia la pieza." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="17" width="12" height="12" rx="1.5" fill="#c2410c"/><rect x="17" y="17" width="12" height="12" rx="1.5" fill="#9a3412"/><rect x="10" y="3" width="12" height="12" rx="1.5" fill="#ea580c"/></svg>CalculaObra</a>
+    <nav class="site-nav" aria-label="Principal">
+      <a href="/calculadora-concreto/">Concreto</a>
+      <a href="/calculadora-bloques/">Bloques</a>
+      <a href="/calculadora-pies-tablares/" aria-current="page">Madera</a>
+      <a href="/sobre-nosotros/">Sobre nosotros</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<article>
+  <nav class="breadcrumb" aria-label="Migas de pan"><ol><li><a href="/">Inicio</a></li><li>Calculadora de pies tablares</li></ol></nav>
+  <h1>Calculadora de pies tablares</h1>
+  <p class="lead">Añade las piezas de tu pedido y verás cuántos pies tablares suman, cuánto costarán y su equivalencia en metros cúbicos. Funciona con pulgadas o centímetros y con pies o metros.</p>
+
+  <section class="calc" aria-label="Calculadora">
+    <form id="calc-pies" class="card" novalidate>
+      <fieldset>
+        <legend>1. Unidades</legend>
+        <div class="row">
+          <div class="field">
+            <label for="u_seccion">Grueso y ancho en</label>
+            <select id="u_seccion" name="u_seccion">
+              <option value="pulg" selected>Pulgadas (")</option>
+              <option value="cm">Centímetros</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="u_largo">Largo en</label>
+            <select id="u_largo" name="u_largo">
+              <option value="pies" selected>Pies</option>
+              <option value="m">Metros</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. Piezas</legend>
+        <div id="filas"></div>
+        <div class="actions" style="margin-top:10px">
+          <button type="button" id="btn-anadir" class="secondary">+ Añadir otra medida</button>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>3. Precio <span class="hint" style="font-weight:400">(opcional)</span></legend>
+        <div class="field"><label for="precio">Precio por pie tablar <span class="hint">en tu moneda</span></label><input id="precio" name="precio" type="number" inputmode="decimal" min="0" step="any" placeholder="Ej. 28"></div>
+      </fieldset>
+      <p id="r-error" class="error" role="alert"></p>
+    </form>
+
+    <div class="card results" aria-live="polite">
+      <h2>Total</h2>
+      <div class="big" id="r-total">–</div>
+      <p id="r-detalle" style="margin:.3em 0 0"></p>
+      <ul class="result-list" id="r-lista"></ul>
+      <div class="actions">
+        <button type="button" id="btn-copiar">Copiar lista</button>
+        <button type="button" id="btn-imprimir" class="secondary">Imprimir</button>
+      </div>
+    </div>
+  </section>
+
+  <template id="fila-plantilla">
+    <div class="pieza">
+      <div class="pieza-head">
+        <strong class="pieza-num">Pieza</strong>
+        <select class="medida-comun" aria-label="Rellenar con una medida comercial">
+          <option value="">Medida comercial…</option>
+          <option value="1x4">Tabla 1" × 4"</option>
+          <option value="1x6">Tabla 1" × 6"</option>
+          <option value="1x8">Tabla 1" × 8"</option>
+          <option value="1x10">Tabla 1" × 10"</option>
+          <option value="1x12">Tabla 1" × 12"</option>
+          <option value="2x4">Barrote 2" × 4"</option>
+          <option value="2x6">Viga 2" × 6"</option>
+          <option value="2x8">Viga 2" × 8"</option>
+          <option value="3x3">Polín 3" × 3"</option>
+          <option value="4x4">Polín 4" × 4"</option>
+          <option value="4x6">Viga 4" × 6"</option>
+        </select>
+        <button type="button" class="quitar secondary" aria-label="Quitar esta pieza">Quitar</button>
+      </div>
+      <div class="row">
+        <div class="field"><label>Cantidad</label><input data-k="cant" type="number" inputmode="numeric" min="1" step="1" value="1" aria-label="Cantidad"></div>
+        <div class="field"><label>Grueso</label><input data-k="grueso" type="number" inputmode="decimal" min="0" step="any" aria-label="Grueso"></div>
+        <div class="field"><label>Ancho</label><input data-k="ancho" type="number" inputmode="decimal" min="0" step="any" aria-label="Ancho"></div>
+        <div class="field"><label>Largo</label><input data-k="largo" type="number" inputmode="decimal" min="0" step="any" aria-label="Largo"></div>
+      </div>
+    </div>
+  </template>
+
+  <!-- ANUNCIO 1 (tras la calculadora): pega aquí un bloque de AdSense -->
+
+  <h2>Qué es un pie tablar</h2>
+  <p>El pie tablar (PT, o <em>board foot</em> en inglés) es la unidad con la que se vende la madera aserrada en México, Centroamérica, Perú, Ecuador y otros países. Equivale a una pieza de <strong>1 pulgada de grueso × 12 pulgadas de ancho × 1 pie de largo</strong>, es decir, 144 pulgadas cúbicas o 2,36 litros de madera.</p>
+  <p>Mide <strong>volumen</strong>, no longitud. Por eso una tabla delgada y larga y un polín grueso y corto pueden tener los mismos pies tablares y costar lo mismo.</p>
+
+  <h2>Fórmula para calcular pies tablares</h2>
+  <p class="note"><strong>Pies tablares = grueso (pulgadas) × ancho (pulgadas) × largo (pies) ÷ 12</strong></p>
+  <p>Ejemplo: 10 barrotes de 2" × 4" de 8 pies → 2 × 4 × 8 ÷ 12 = 5,33 PT por barrote × 10 = <strong>53,33 pies tablares</strong>. Si el pie tablar cuesta 28, el pedido sale por 53,33 × 28 = 1.493,33.</p>
+  <h3>Si tienes las medidas en centímetros y metros</h3>
+  <p>Convierte antes de aplicar la fórmula: divide los centímetros entre 2,54 para pasarlos a pulgadas, y los metros entre 0,3048 para pasarlos a pies. Una tabla de 1" × 12" y 2,5 m de largo tiene 2,5 ÷ 0,3048 = 8,2 pies de largo, así que suma 1 × 12 × 8,2 ÷ 12 = 8,2 PT. La calculadora hace esta conversión sola si eliges centímetros o metros.</p>
+  <h3>Pasar de pies tablares a metros cúbicos</h3>
+  <ul>
+    <li>1 pie tablar = 0,00236 m³</li>
+    <li>1 m³ = 423,78 pies tablares</li>
+  </ul>
+
+  <h2>Tabla de pies tablares por pieza</h2>
+  <p>Pies tablares de una sola pieza según su sección y su largo en pies. La columna de 8¼ pies es el largo habitual de las tablas en México (unos 2,51 m).</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Sección</th><th>8 pies</th><th>8¼ pies</th><th>10 pies</th><th>12 pies</th><th>16 pies</th></tr></thead>
+      <tbody>
+        <tr><td>1" × 4"</td><td class="num">2,67</td><td class="num">2,75</td><td class="num">3,33</td><td class="num">4</td><td class="num">5,33</td></tr>
+        <tr><td>1" × 6"</td><td class="num">4</td><td class="num">4,13</td><td class="num">5</td><td class="num">6</td><td class="num">8</td></tr>
+        <tr><td>1" × 8"</td><td class="num">5,33</td><td class="num">5,5</td><td class="num">6,67</td><td class="num">8</td><td class="num">10,67</td></tr>
+        <tr><td>1" × 10"</td><td class="num">6,67</td><td class="num">6,88</td><td class="num">8,33</td><td class="num">10</td><td class="num">13,33</td></tr>
+        <tr><td>1" × 12"</td><td class="num">8</td><td class="num">8,25</td><td class="num">10</td><td class="num">12</td><td class="num">16</td></tr>
+        <tr><td>2" × 4"</td><td class="num">5,33</td><td class="num">5,5</td><td class="num">6,67</td><td class="num">8</td><td class="num">10,67</td></tr>
+        <tr><td>2" × 6"</td><td class="num">8</td><td class="num">8,25</td><td class="num">10</td><td class="num">12</td><td class="num">16</td></tr>
+        <tr><td>2" × 8"</td><td class="num">10,67</td><td class="num">11</td><td class="num">13,33</td><td class="num">16</td><td class="num">21,33</td></tr>
+        <tr><td>2" × 10"</td><td class="num">13,33</td><td class="num">13,75</td><td class="num">16,67</td><td class="num">20</td><td class="num">26,67</td></tr>
+        <tr><td>2" × 12"</td><td class="num">16</td><td class="num">16,5</td><td class="num">20</td><td class="num">24</td><td class="num">32</td></tr>
+        <tr><td>3" × 3"</td><td class="num">6</td><td class="num">6,19</td><td class="num">7,5</td><td class="num">9</td><td class="num">12</td></tr>
+        <tr><td>4" × 4"</td><td class="num">10,67</td><td class="num">11</td><td class="num">13,33</td><td class="num">16</td><td class="num">21,33</td></tr>
+        <tr><td>4" × 6"</td><td class="num">16</td><td class="num">16,5</td><td class="num">20</td><td class="num">24</td><td class="num">32</td></tr>
+        <tr><td>6" × 6"</td><td class="num">24</td><td class="num">24,75</td><td class="num">30</td><td class="num">36</td><td class="num">48</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ANUNCIO 2 (mitad del texto): pega aquí un bloque de AdSense -->
+
+  <h2>Consejos al comprar madera</h2>
+  <ul>
+    <li><strong>Medidas nominales:</strong> la madera se cobra por su medida nominal (2" × 4"), aunque cepillada mida algo menos. Si vas a construir con medidas exactas, pregunta en la maderería la medida real.</li>
+    <li><strong>Compara siempre por pie tablar,</strong> no por pieza. Un barrote barato puede salir caro por pie tablar si es más corto que el de otra tienda.</li>
+    <li><strong>Suma un 10 % por desperdicio</strong> si vas a cortar las piezas: los despuntes, nudos y defectos no se aprovechan.</li>
+    <li><strong>Madera para cimbra:</strong> para colar losas y trabes calcula también el concreto con la <a href="/calculadora-concreto/">calculadora de concreto</a>.</li>
+  </ul>
+
+  <h2>Preguntas frecuentes</h2>
+  <details><summary>¿Cómo se calculan los pies tablares?</summary><p>Multiplica el grueso en pulgadas por el ancho en pulgadas y por el largo en pies, y divide entre 12. Un barrote de 2" × 4" × 8 pies tiene 2 × 4 × 8 ÷ 12 = 5,33 pies tablares.</p></details>
+  <details><summary>¿Cuántos pies tablares tiene un metro cúbico?</summary><p>Un metro cúbico tiene 423,78 pies tablares. Al revés, un pie tablar equivale a 0,00236 m³ (2,36 litros de madera).</p></details>
+  <details><summary>¿Cuántos pies tablares tiene una tabla de 1 × 12 × 8 1/4?</summary><p>1 × 12 × 8,25 ÷ 12 = 8,25 pies tablares.</p></details>
+  <details><summary>¿Se usan las medidas nominales o las reales?</summary><p>En la venta se usan las nominales. Un barrote de 2" × 4" se cobra como 2 × 4 aunque, ya cepillado, mida algo menos. Usa las medidas con las que el aserradero o la maderería anuncia la pieza.</p></details>
+
+  <h2>Otras calculadoras de obra</h2>
+  <ul>
+    <li><a href="/calculadora-concreto/">Calculadora de concreto</a>: bultos de cemento, arena y grava para losas, zapatas y columnas.</li>
+    <li><a href="/calculadora-bloques/">Calculadora de bloques y mortero</a>: piezas, cemento y arena para muros.</li>
+  </ul>
+</article>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Legal">
+      <a href="/sobre-nosotros/">Sobre nosotros</a>
+      <a href="/contacto/">Contacto</a>
+      <a href="/aviso-legal/">Aviso legal</a>
+      <a href="/politica-privacidad/">Privacidad</a>
+      <a href="/politica-cookies/">Cookies</a>
+    </nav>
+    <p>Los resultados son orientativos para presupuestar. En elementos estructurales sigue siempre el proyecto y el criterio de un profesional.</p>
+  </div>
+</footer>
+<script src="/js/pies-tablares.js" defer></script>
+</body>
+</html>
